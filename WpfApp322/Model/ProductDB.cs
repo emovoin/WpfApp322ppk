@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySqlConnector;
 using System.Windows;
 
-namespace WpfApp322
+namespace WpfApp322.Model
 {
     internal class ProductDB
     {
@@ -14,7 +14,7 @@ namespace WpfApp322
 
         private ProductDB(DbConnection db)
         {
-            this.connection = db;
+            connection = db;
         }
         internal List<Products> SelectAll()
         {
@@ -24,20 +24,26 @@ namespace WpfApp322
 
             if (connection.OpenConnection())
             {
-                var command = connection.CreateCommand("select `id`, `name`, `price` from `Products` ");
+                var command = connection.CreateCommand("select `Id`, `Name`, `Price` from `Products` ");
                 try
                 {
                     MySqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
                     {
                         int id = dr.GetInt32(0);
+
                         string name = string.Empty;
                         if (!dr.IsDBNull(1))
-                            name = dr.GetString("name");
-                        int price = dr.GetInt32("price");
+                            name = dr.GetString("Name");
+
+                        int price = 0;
+                        if (!dr.IsDBNull(2))
+                            price = dr.GetInt32("Price");
+
+
                         products.Add(new Products
                         {
-                            ID = id,
+                            Id = id,
                             Name = name,
                             Price = price
                         });
@@ -51,6 +57,14 @@ namespace WpfApp322
             connection.CloseConnection();
 
             return products;
+        }
+
+        static ProductDB db;
+        public static ProductDB GetDb()
+        {
+            if (db == null)
+                db = new ProductDB(DbConnection.GetDbConnection());
+            return db;
         }
     }
 }

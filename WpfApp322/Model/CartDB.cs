@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySqlConnector;
 using System.Windows;
 
-namespace WpfApp322
+namespace WpfApp322.Model
 {
     internal class CartDB
     {

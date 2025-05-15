@@ -22,7 +22,7 @@
                     <GridViewColumn Header="Действие" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Удалить" Click="RemoveItem_Click" Tag="{Binding ProductId}" Margin="2" Padding="5"/>
+                                <Button Content="Удалить"  Tag="{Binding ProductId}" Margin="2" Padding="5"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -33,7 +33,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <TextBlock Text="Итого:" FontWeight="Bold" Margin="5" VerticalAlignment="Center"/>
             <TextBlock x:Name="TotalPriceText" Text="0" FontWeight="Bold" Margin="5" VerticalAlignment="Center"/>
-            <Button Content="Оформить заказ" Click="CheckoutButton_Click" Margin="5" Padding="10,5"/>
+            <Button Content="Оформить заказ"  Margin="5" Padding="10,5"/>
         </StackPanel>
     </Grid>
 </Window>

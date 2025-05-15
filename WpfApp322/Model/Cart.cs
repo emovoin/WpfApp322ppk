@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp322
+namespace WpfApp322.Model
 {
     public class Cart
     {
