@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows;
 using WpfApp322.Model;
 using WpfApp322.VMTools;
+using System.Windows.Input;
 
 namespace WpfApp322.ViewModel
 {
@@ -26,11 +27,27 @@ namespace WpfApp322.ViewModel
                 Signal();
             }
         }
-       
+
+        public ICommand OpenAdminWindow { get; }
+        public ICommand OpenCartWindow { get; }
+
+
 
         public MainWindowViewModel()
         {
-                       SelectAll();
+            SelectAll();
+
+            OpenAdminWindow = new CommandVM(() =>
+            {
+                AdminWindow adminWindow = new AdminWindow();
+                adminWindow.ShowDialog();
+            }, () => true);
+
+            OpenCartWindow = new CommandVM(() =>
+            {
+                CartWindow cartWindow = new CartWindow();
+                cartWindow.ShowDialog();
+            }, () => true);
         }
 
         private void SelectAll()

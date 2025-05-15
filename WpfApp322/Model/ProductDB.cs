@@ -24,7 +24,7 @@ namespace WpfApp322.Model
 
             if (connection.OpenConnection())
             {
-                var command = connection.CreateCommand("select `Id`, `Name`, `Price` from `Products` ");
+                var command = connection.CreateCommand("select `Id`, `Name`, `Price`, `Image`, `Description` from `Products` ");
                 try
                 {
                     MySqlDataReader dr = command.ExecuteReader();
@@ -40,12 +40,25 @@ namespace WpfApp322.Model
                         if (!dr.IsDBNull(2))
                             price = dr.GetInt32("Price");
 
+                        byte[] photo = null;
+                        if (!dr.IsDBNull(3))
+                        {
+                            long size = dr.GetBytes(5, 0, null, 0, 0);
+                            photo = new byte[size];
+                            dr.GetBytes(5, 0, photo, 0, (int)size);
+                        }
+
+                        string description = string.Empty;
+                        if (!dr.IsDBNull(4))
+                            description = dr.GetString("Description");
 
                         products.Add(new Products
                         {
                             Id = id,
                             Name = name,
-                            Price = price
+                            Price = price,
+                            Image = photo,
+                            Description = description
                         });
                     }
                 }

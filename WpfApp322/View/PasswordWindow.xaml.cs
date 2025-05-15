@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp322.ViewModel;
 
 namespace WpfApp322
 {
@@ -22,20 +23,7 @@ namespace WpfApp322
         public PasswordWindow()
         {
             InitializeComponent();
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Простая проверка пароля (в реальном приложении нужно использовать безопасные методы)
-            if (PasswordBox.Password == "admin123")
-            {
-                DialogResult = true;
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Неверный пароль!");
-            }
-        }
+            DataContext = new PasswordWindowViewModel();
+        }       
     }
 }

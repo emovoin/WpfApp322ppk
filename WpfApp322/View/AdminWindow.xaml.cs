@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp322.ViewModel;
 
 namespace WpfApp322
 {
@@ -19,20 +20,11 @@ namespace WpfApp322
     /// </summary>
     public partial class AdminWindow : Window
     {
-        //public AdminWindow(List<Product> products, Dictionary<int, int> purchaseStatistics)
-        //{
-        //    InitializeComponent();
-
-        //    var stats = products.Select(p => new
-        //    {
-        //        p.Id,
-        //        p.Name,
-        //        p.Price,
-        //        SalesCount = purchaseStatistics.ContainsKey(p.Id) ? purchaseStatistics[p.Id] : 0,
-        //        TotalRevenue = (purchaseStatistics.ContainsKey(p.Id) ? purchaseStatistics[p.Id] : 0) * p.Price
-        //    }).ToList();
-
-        //    ProductsStatsListView.ItemsSource = stats;
-        //}
+        public AdminWindow()
+        {
+            InitializeComponent();
+            DataContext = new AdminWindowViewModel();
+        }
+        
     }
 }

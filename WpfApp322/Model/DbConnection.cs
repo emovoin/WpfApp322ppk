@@ -17,7 +17,7 @@ namespace WpfApp322.Model
             MySqlConnectionStringBuilder sb = new MySqlConnectionStringBuilder();
             sb.UserID = "student";
             sb.Password = "student";
-            sb.Server = "192.168.200.13";
+            sb.Server = "95.154.107.102";
             sb.Database = "1125_2025_ustimov";
             sb.CharacterSet = "utf8mb4";
 
